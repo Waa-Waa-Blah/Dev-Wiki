@@ -1,6 +1,7 @@
 package com.wwb.devwiki.domain.file.domain;
 
 
+import com.wwb.devwiki.domain.board.domain.Board;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,10 @@ public class File {
     private String path;
 
     private String hashName;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     private File(String originName, String path, String hashName) {
         this.originName = originName;

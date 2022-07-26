@@ -1,10 +1,13 @@
 package com.wwb.devwiki.domain.member.domain;
 
+import com.wwb.devwiki.domain.board.domain.Board;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -26,6 +29,9 @@ public class Member {
     private String phoneNumber;
 
     private boolean accountActive;
+
+    @OneToMany(mappedBy = "author")
+    List<Board> boards = new ArrayList<>();
 
     private Member(String realName, String nickname, String password, String phoneNumber, boolean accountActive) {
         this.realName = realName;

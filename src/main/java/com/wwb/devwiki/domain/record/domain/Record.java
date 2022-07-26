@@ -1,5 +1,6 @@
 package com.wwb.devwiki.domain.record.domain;
 
+import com.wwb.devwiki.domain.board.domain.Board;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +25,10 @@ public class Record {
     private long hit;
 
     private long version;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_id")
+    private Board board;
 
     private Record(String title, String content, long hit, long version) {
         this.title = title;
