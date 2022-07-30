@@ -30,14 +30,17 @@ public class Record {
     @JoinColumn(name = "board_id")
     private Board board;
 
-    private Record(String title, String content, long hit, long version) {
+    private Record(String title, String content, long hit, long version, Board board) {
         this.title = title;
         this.content = content;
         this.hit = hit;
         this.version = version;
+        this.board = board;
     }
 
-    public static Record of(String title, String content, long hit, long version) {
-        return new Record(title, content, hit, version);
+    public static Record of(String title, String content, long hit, long version, Board board) {
+        Record record = new Record(title, content, hit, version, board);
+        board.getRecords().add(record);
+        return record;
     }
 }
