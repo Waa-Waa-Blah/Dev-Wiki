@@ -5,7 +5,7 @@ import com.wwb.devwiki.domain.board.dto.BoardReqDto;
 
 public interface BoardService {
 
-    Board writeBoard(BoardReqDto boardReqDto);
+    Board writeBoard(BoardReqDto boardReqDto, Long loginUserId);
 
 
 }

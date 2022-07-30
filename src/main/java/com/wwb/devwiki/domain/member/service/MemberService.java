@@ -7,6 +7,7 @@ public interface MemberService {
 
     Member join(MemberJoinReqDto memberJoinReqDto);
 
-
     Member login(String id, String password);
+
+    Member findMemberById(Long loginUserId);
 }

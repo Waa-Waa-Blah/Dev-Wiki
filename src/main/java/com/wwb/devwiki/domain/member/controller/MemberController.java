@@ -26,7 +26,7 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public void login(MemberLoginReqDto memberLoginReqDto, HttpServletRequest httpServletRequest) {
+    public void login(@RequestBody MemberLoginReqDto memberLoginReqDto, HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
         Member member = memberService.login(memberLoginReqDto.nickname, memberLoginReqDto.password);
         session.setAttribute("loginUser", member.getId());

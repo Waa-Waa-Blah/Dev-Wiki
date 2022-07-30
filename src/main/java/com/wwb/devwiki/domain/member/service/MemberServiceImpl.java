@@ -24,4 +24,9 @@ public class MemberServiceImpl implements MemberService {
     public Member login(String id, String password) {
         return memberRepository.findByNicknameAndPassword(id, password);
     }
+
+    @Override
+    public Member findMemberById(Long loginUserId) {
+        return memberRepository.findById(loginUserId).get();
+    }
 }
