@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -23,5 +25,15 @@ public class BoardServiceImpl implements BoardService {
         Board board = boardReqDto.toBoard();
         board.addAuthor(member);
         return boardRepository.save(board);
+    }
+
+    @Override
+    public Board findBoardById(Long id) {
+        return boardRepository.findById(id).get();
+    }
+
+    @Override
+    public List<Board> findBoards() {
+        return boardRepository.findAll();
     }
 }
