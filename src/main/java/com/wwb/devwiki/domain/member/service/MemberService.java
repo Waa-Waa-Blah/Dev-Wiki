@@ -1,0 +1,11 @@
+package com.wwb.devwiki.domain.member.service;
+
+import com.wwb.devwiki.domain.member.domain.Member;
+import com.wwb.devwiki.domain.member.dto.MemberJoinReqDto;
+
+public interface MemberService {
+
+    Member join(MemberJoinReqDto memberJoinReqDto);
+
+
+}
