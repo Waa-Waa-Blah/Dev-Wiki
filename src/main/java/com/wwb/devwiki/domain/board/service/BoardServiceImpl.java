@@ -5,6 +5,7 @@ import com.wwb.devwiki.domain.board.dto.BoardReqDto;
 import com.wwb.devwiki.domain.board.repository.BoardRepository;
 import com.wwb.devwiki.domain.member.domain.Member;
 import com.wwb.devwiki.domain.member.service.MemberService;
+import com.wwb.devwiki.domain.record.service.RecordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +18,7 @@ public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepository;
     private final MemberService memberService;
+    private final RecordService recordService;
 
     @Override
     @Transactional
@@ -24,6 +26,7 @@ public class BoardServiceImpl implements BoardService {
         Member member = memberService.findMemberById(loginUserId);
         Board board = boardReqDto.toBoard();
         board.addAuthor(member);
+        recordService.createRecord(board.getTitle(), board.getContent(), board.getHit(), 0L, board);
         return boardRepository.save(board);
     }
 

@@ -48,7 +48,10 @@ public class Board {
         author.getBoards().add(this);
     }
 
+
     public static Board of(String title, String content) {
-        return new Board(title, content);
+        Board board = new Board(title, content);
+        return board;
     }
+
 }
