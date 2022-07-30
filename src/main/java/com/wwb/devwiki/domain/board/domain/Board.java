@@ -43,6 +43,11 @@ public class Board {
         this.content = content;
     }
 
+    public void addAuthor(Member author) {
+        this.author = author;
+        author.getBoards().add(this);
+    }
+
     public static Board of(String title, String content) {
         return new Board(title, content);
     }
