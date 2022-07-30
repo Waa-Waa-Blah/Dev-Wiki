@@ -25,4 +25,14 @@ public class Bookmark {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
+
+    public Bookmark(Member member, Board board) {
+        this.member = member;
+        this.board = board;
+    }
+
+    public static Bookmark of(Member member, Board board){
+        return new Bookmark(member,board);
+    }
+
 }
