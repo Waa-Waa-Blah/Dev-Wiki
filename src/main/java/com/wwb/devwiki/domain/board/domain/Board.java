@@ -6,10 +6,12 @@ import com.wwb.devwiki.domain.record.domain.Record;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -54,4 +56,7 @@ public class Board {
         return board;
     }
 
+    public void addFiles(List<File> files) {
+        this.files.addAll(files);
+    }
 }
