@@ -40,13 +40,14 @@ public class BoardServiceImpl implements BoardService {
         if(files.size()>0) {
             List<File> fileList = new ArrayList<>();
             for (MultipartFile file : files) {
-                File saveFile = new File(dirPath + file.getOriginalFilename());
+                File saveFile = new File(dirPath + UUID.randomUUID()+ file.getOriginalFilename());
                 saveFile.createNewFile();
                 fileList.add(saveFile);
             }
             List<com.wwb.devwiki.domain.file.domain.File> fileEntityList = new ArrayList<>();
-            for (File file : fileList) {
-                com.wwb.devwiki.domain.file.domain.File fileEntity = com.wwb.devwiki.domain.file.domain.File.of(file.getName(), file.getAbsolutePath(), UUID.randomUUID() + file.getName());
+            for (int i = 0;i<files.size();i++) {
+                File file = fileList.get(i);
+                com.wwb.devwiki.domain.file.domain.File fileEntity = com.wwb.devwiki.domain.file.domain.File.of(files.get(i).getOriginalFilename(), file.getAbsolutePath(), file.getName());
                 fileEntityList.add(fileEntity);
                 fileEntity.addBoard(board);
             }
