@@ -37,4 +37,9 @@ public class File {
     public static File of(String originName, String path, String hashName) {
         return new File(originName, path, hashName);
     }
+
+    public void addBoard(Board board) {
+        board.getFiles().add(this);
+        this.board = board;
+    }
 }

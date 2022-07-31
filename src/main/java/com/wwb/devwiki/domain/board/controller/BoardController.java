@@ -5,7 +5,9 @@ import com.wwb.devwiki.domain.board.dto.BoardReqDto;
 import com.wwb.devwiki.domain.board.dto.BoardResDto;
 import com.wwb.devwiki.domain.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,10 +23,12 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping
-    public void writeBoard(@RequestBody BoardReqDto boardReqDto, HttpServletRequest httpServletRequest,
+    public void writeBoard(@RequestPart("boardReqDto") BoardReqDto boardReqDto,
+                           @RequestPart(value = "file",required = false) List<MultipartFile> files,
+                           HttpServletRequest httpServletRequest,
                            HttpServletResponse httpServletResponse) throws IOException {
         Long loginUserId = (long) httpServletRequest.getSession(false).getAttribute("loginUser");
-        Board board = boardService.writeBoard(boardReqDto, loginUserId);
+        Board board = boardService.writeBoard(boardReqDto, loginUserId, files);
         httpServletResponse.sendRedirect("/api/board/"+board.getId());
     }
 
