@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -40,8 +41,8 @@ public class BoardServiceImpl implements BoardService {
         if(files.size()>0) {
             List<File> fileList = new ArrayList<>();
             for (MultipartFile file : files) {
-                File saveFile = new File(dirPath + UUID.randomUUID()+ file.getOriginalFilename());
-                saveFile.createNewFile();
+                File saveFile = new File(dirPath + UUID.randomUUID() + file.getOriginalFilename());
+                file.transferTo(saveFile);
                 fileList.add(saveFile);
             }
             List<com.wwb.devwiki.domain.file.domain.File> fileEntityList = new ArrayList<>();
